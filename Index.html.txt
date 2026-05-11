@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matthew Gillespie | Mechanical Engineering Portfolio</title>
+
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --card: #ffffff;
+      --text: #1f2933;
+      --muted: #64748b;
+      --accent: #0f4c81;
+      --accent-light: #e6f0fa;
+      --border: #d9e2ec;
+      --dark: #102a43;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #102a43, #0f4c81);
+      color: white;
+      padding: 6rem 1.5rem;
+    }
+
+    .hero-content {
+      max-width: 1150px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #dbeafe;
+      max-width: 700px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-bottom: 2rem;
+    }
+
+    .tag {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 0.45rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: white;
+      color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border: 1px solid white;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 18px;
+      padding: 1.5rem;
+    }
+
+    .hero-card h3 {
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-card ul {
+      padding-left: 1.2rem;
+      color: #dbeafe;
+    }
+
+    section {
+      max-width: 1150px;
+      margin: auto;
+      padding: 4rem 1.5rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-bottom: 2rem;
+      max-width: 800px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 20px rgba(15, 76, 129, 0.06);
+    }
+
+    .card h3 {
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .skill {
+      background: var(--accent-light);
+      color: var(--accent);
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(15, 76, 129, 0.06);
+    }
+
+    .project-image {
+      height: 210px;
+      background: linear-gradient(135deg, #dbeafe, #f8fafc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-weight: 700;
+      text-align: center;
+      padding: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-content {
+      padding: 1.5rem;
+    }
+
+    .project-content h3 {
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-section {
+      margin-top: 1rem;
+    }
+
+    .project-section h4 {
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .project-section ul {
+      padding-left: 1.2rem;
+    }
+
+    .resume-box {
+      text-align: center;
+      background: var(--dark);
+      color: white;
+      border-radius: 18px;
+      padding: 2.5rem 1.5rem;
+    }
+
+    .resume-box p {
+      color: #dbeafe;
+      margin: 0.75rem auto 1.5rem;
+      max-width: 700px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .contact-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.2rem;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 850px) {
+      .hero-content,
+      .about-grid,
+      .projects-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-container {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Matthew Gillespie</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <div>
+        <h1>Mechanical Engineering Portfolio</h1>
+        <p>
+          Mechanical Engineering student at Auburn University focused on aerospace systems,
+          manufacturing, technical integration, controls, and practical engineering design.
+        </p>
+
+        <div class="hero-tags">
+          <span class="tag">Mechanical Engineering</span>
+          <span class="tag">Aerospace</span>
+          <span class="tag">Manufacturing</span>
+          <span class="tag">Controls</span>
+          <span class="tag">CAD</span>
+          <span class="tag">Technical Integration</span>
+        </div>
+
+        <div class="button-row">
+          <a class="btn btn-primary" href="#projects">View Projects</a>
+          <a class="btn btn-secondary" href="Matthew_Gillespie_Resume.pdf" download>Download Resume</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Career Focus</h3>
+        <ul>
+          <li>Incoming Boeing Chinook Certification Engineer</li>
+          <li>Mechanical Engineering major</li>
+          <li>Business Engineering Technology minor</li>
+          <li>Experience with Boeing technical integration and process improvement</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <p class="section-subtitle">
+      I am a Mechanical Engineering student at Auburn University with hands-on experience in
+      aerospace program management, technical integration, manufacturing projects, mechatronics,
+      and engineering design.
+    </p>
+
+    <div class="about-grid">
+      <div class="card">
+        <h3>Background</h3>
+        <p>
+          My engineering interests sit at the intersection of mechanical design, aerospace systems,
+          manufacturing processes, and real-world project execution. Through internships at Boeing
+          and engineering coursework at Auburn, I have worked on technical documentation workflows,
+          controls projects, additive manufacturing research, CAD design, and prototype development.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Core Skills</h3>
+        <div class="skills-list">
+          <span class="skill">SolidWorks</span>
+          <span class="skill">MATLAB</span>
+          <span class="skill">Python</span>
+          <span class="skill">Azure DevOps</span>
+          <span class="skill">Technical Documentation</span>
+          <span class="skill">Process Mapping</span>
+          <span class="skill">Manufacturing</span>
+          <span class="skill">Controls</span>
+          <span class="skill">Prototyping</span>
+          <span class="skill">Team Leadership</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <p class="section-subtitle">
+      Selected engineering projects showing aerospace process improvement, mechatronics, senior design,
+      and practical product development.
+    </p>
+
+    <div class="projects-grid">
+
+      <!-- PROJECT 1: PCR -->
+      <article class="project-card">
+        <div class="project-image">
+          Image Placeholder: Sanitized PCR Flow Diagram / ADO Workflow Mockup
+        </div>
+
+        <div class="project-content">
+          <h3>PCR Process Flow – Boeing Internship</h3>
+          <p class="project-meta">BGS Project Manager Intern | Chinook Technical Integration | Summer 2025</p>
+
+          <div class="project-section">
+            <h4>Overview</h4>
+            <p>
+              Designed and documented a Publications Change Request process flow connecting VECTOR
+              request tracking with Azure DevOps task management for maintenance and flight manual updates.
+            </p>
+          </div>
+
+          <div class="project-section">
+            <h4>Skills Used</h4>
+            <ul>
+              <li>Process mapping</li>
+              <li>Technical documentation</li>
+              <li>Cross-functional coordination</li>
+              <li>Workflow standardization</li>
+              <li>Engineering change awareness</li>
+            </ul>
+          </div>
+
+          <div class="project-section">
+            <h4>Tools / Software</h4>
+            <ul>
+              <li>Azure DevOps</li>
+              <li>VECTOR</li>
+              <li>Microsoft Office</li>
+              <li>IPDM exposure</li>
+            </ul>
+          </div>
+
+          <div class="project-section">
+            <h4>My Role</h4>
+            <p>
+              Built the PCR process document, coordinated with IPT managers, organized meetings,
+              clarified responsibility flow, and helped align process ownership across teams.
+            </p>
+          </div>
+
+          <div class="project-section">
+            <h4>Key Results / Outcomes</h4>
+            <ul>
+              <li>Created a clear PCR workflow from request generation through closure.</li>
+              <li>Defined how Tier 0, Tier 1, Tier 2, Tier 3, and general ADO cards support tracking.</li>
+              <li>Improved visibility between VECTOR status updates and ADO task execution.</li>
+              <li>Produced documentation usable as a process navigation guide.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 2: MECHATRONICS -->
+      <article class="project-card">
+        <div class="project-image">
+          Image Placeholder: Inverted Pendulum CAD / Staring Robot Photo
+        </div>
+
+        <div class="project-content">
+          <h3>Mechatronics Projects – Inverted Pendulum & Staring Robot</h3>
+          <p class="project-meta">Controls, sensing, actuation, and embedded systems</p>
+
+          <div class="project-section">
+            <h4>Overview</h4>
+            <p>
+              Developed mechatronics systems involving sensing, feedback control, actuation,
+              and mechanical design. Projects included an inverted pendulum control system and
+              a face-tracking “Staring Robot.”
+            </p>
+          </div>
+
+          <div class="project-section">
+            <h4>Skills Used</h4>
+            <ul>
+              <li>Feedback control</li>
+              <li>Sensor integration</li>
+              <li>Servo actuation</li>
+              <li>Mechanical prototyping</li>
+              <li>System debugging</li>
+            </ul>
+          </div>
+
+          <div class="project-section">
+            <h4>Tools / Software</h4>
+            <ul>
+              <li>Python</li>
+              <li>Raspberry Pi</li>
+              <li>Camera Module</li>
+              <li>Servo motors</li>
+              <li>MATLAB / Simulink as applicable</li>
+              <li>CAD tools as applicable</li>
+            </ul>
+          </div>
+
+          <div class="project-section">
+            <h4>My Role</h4>
+            <p>
+              Contributed to mechanical design, system integration, control logic, testing,
+              and troubleshooting of electromechanical components.
+            </p>
+          </div>
+
+          <div class="project-section">
+            <h4>Key Results / Outcomes</h4>
+            <ul>
+              <li>Demonstrated real-time sensing and mechanical response.</li>
+              <li>Applied control theory to physical hardware.</li>
+              <li>Integrated computation, electronics, and mechanical motion into working prototypes.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 3: SENIOR DESIGN -->
+      <article class="project-card">
+        <div class="project-image">
+          Image Placeholder: AlSi10Mg Plates / FSW Setup / Tensile Specimens
+        </div>
+
+        <div class="project-content">
+          <h3>Senior Design – Boeing Friction Stir Welding of AM AlSi10Mg</h3>
+          <p class="project-meta">Auburn Senior Design | Manufacturing research and testing</p>
+
+          <div class="project-section">
+            <h4>Overview</h4>
+            <p>
+              Senior design project studying the effect of friction stir welding on additively
+              manufactured AlSi10Mg plates, with focus on build orientation, tensile behavior,
+              manufacturing planning, and fixture development.
+            </p>
+          </div>
+
+          <div class="project-section">
+            <h4>Skills Used</h4>
+            <ul>
+              <li>Manufacturing process planning</li>
+              <li>Additive manufacturing</li>
+              <li>Friction stir welding research</li>
+              <li>Fixture/jig design</li>
+              <li>Tensile testing preparation</li>
+              <li>Technical presentations</li>
+            </ul>
+          </div>
+
+          <div class="project-section">
+            <h4>Tools / Software</h4>
+            <ul>
+              <li>SolidWorks</li>
+              <li>MATLAB / Excel</li>
+              <li>Instron tensile testing equipment</li>
+              <li>3D printing / AM equipment</li>
+              <li>Manufacturing shop tools</li>
+            </ul>
+          </div>
+
+          <div class="project-section">
+            <h4>My Role</h4>
+            <p>
+              Served as project manager for the senior design team, coordinated communication,
+              helped plan manufacturing tasks, organized project updates, and contributed to
+              technical research and presentation development.
+            </p>
+          </div>
+
+          <div class="project-section">
+            <h4>Key Results / Outcomes</h4>
+            <ul>
+              <li>Developed a test plan comparing AM-only and FSW AM specimens.</li>
+              <li>Planned specimen orientation and manufacturing workflow.</li>
+              <li>Advanced the project toward plate fabrication, fixture design, drilling, and testing.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 4: BET -->
+      <article class="project-card">
+        <div class="project-image">
+          Image Placeholder: Truck Bed Organizer CAD / Prototype / Final Design
+        </div>
+
+        <div class="project-content">
+          <h3>BET Project – Truck Bed Organizer</h3>
+          <p class="project-meta">Business Engineering Technology | Product design and development</p>
+
+          <div class="project-section">
+            <h4>Overview</h4>
+            <p>
+              Designed a truck bed organization solution focused on practical storage, usability,
+              manufacturability, and customer value.
+            </p>
+          </div>
+
+          <div class="project-section">
+            <h4>Skills Used</h4>
+            <ul>
+              <li>Product development</li>
+              <li>Customer needs analysis</li>
+              <li>CAD modeling</li>
+              <li>Design for manufacturing</li>
+              <li>Cost/value thinking</li>
+              <li>Prototype planning</li>
+            </ul>
+          </div>
+
+          <div class="project-section">
+            <h4>Tools / Software</h4>
+            <ul>
+              <li>SolidWorks</li>
+              <li>Sketching / concept generation</li>
+              <li>Basic fabrication tools</li>
+              <li>Excel for cost or comparison tables</li>
+            </ul>
+          </div>
+
+          <div class="project-section">
+            <h4>My Role</h4>
+            <p>
+              Contributed to concept development, CAD modeling, design refinement, and business-focused
+              product evaluation.
+            </p>
+          </div>
+
+          <div class="project-section">
+            <h4>Key Results / Outcomes</h4>
+            <ul>
+              <li>Created a practical engineering design for truck bed storage.</li>
+              <li>Balanced mechanical function, usability, and manufacturability.</li>
+              <li>Connected technical design decisions to customer value.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="resume">
+    <div class="resume-box">
+      <h2>Resume</h2>
+      <p>
+        Download my resume for a full summary of my education, Boeing internship experience,
+        technical skills, leadership experience, and engineering projects.
+      </p>
+      <a class="btn btn-primary" href="Matthew_Gillespie_Resume.pdf" download>Download Resume</a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-subtitle">
+      I am open to engineering opportunities, project discussions, and professional connections.
+    </p>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Email</h3>
+        <p><a href="mailto:mjgillespie1704@gmail.com">mjgillespie1704@gmail.com</a></p>
+      </div>
+
+      <div class="contact-card">
+        <h3>LinkedIn</h3>
+        <p><a href="#">Add LinkedIn URL</a></p>
+      </div>
+
+      <div class="contact-card">
+        <h3>GitHub</h3>
+        <p><a href="#">Add GitHub URL</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Matthew Gillespie. Mechanical Engineering Portfolio.</p>
+  </footer>
+</body>
+</html>
